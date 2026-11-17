@@ -16,8 +16,9 @@ Setup
 git clone https://github.com/Yqno/Requiem-Converter/
 cd Requiem-Converter
 python3 server.py
+
 ```
-Open ```http://localhost:8765``` in your browser.
+Enter your ID in the ```server.py``` and then Open ```http://localhost:8765``` in your browser.
 
 
 
