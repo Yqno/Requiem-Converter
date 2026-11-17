@@ -5,7 +5,8 @@ Requirements:
 ```
 Python 3.8+
 .NET 10.0 runtime (apt install dotnet10 on Ubuntu 24.04, or from dot.net)
-Garlic running on your PS5 (for PS5 push)```
+Garlic running on your PS5 (for PS5 push)
+```
 
 
 
