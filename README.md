@@ -88,8 +88,10 @@ Based on
 
 This tool ships with and is built around the following projects:
 
-- [MandarinJuice](https://github.com/mi5hmash/MandarinJuice) by [Mi5hmasH](https://github.com/mi5hmash) — ...
-- [Garlic](https://github.com/garlic-os/garlic) by [garlic-os](https://github.com/garlic-os) — ...
-- [ree-save-editor](https://github.com/kvasszn/ree-save-editor) by [kvasszn](https://github.com/kvasszn) — ...
+
+- [MandarinJuice](https://github.com/mi5hmash/MandarinJuice) by [Mi5hmasH](https://github.com/mi5hmash) — RE Engine save encryption, decryption, brute-force and re-signing. The `MandarinJuice` CLI binary and all game profiles in `_profiles/` are from this project.
+- [garlic-savemgr](https://github.com/earthonion/garlic-savemgr) by [earthonion](https://github.com/earthonion) — PS5 save manager. The `sce_sys` template files (`keystone`, `param.sfo`, `icon0.png`) and the HTTP save push API are part of Garlic's format.
+- [ree-save-editor](https://github.com/kvasszn/ree-save-editor) by [kvasszn](https://github.com/kvasszn) — open-source reference for RE Engine save structure and field layout.
+
 
 The convert_re9_ps5 binary is a standalone RE9-specific converter built on top of the private ree_lib crate.
