@@ -1,10 +1,11 @@
 # Requiem-Converter
 A local web UI for converting and transferring RE Engine game saves between PC (Steam) and Jailbroken PS5. Integrates MandarinJuice, a Garlic-compatible package builder, and a hex patch editor, no external tools needed. (Vibecoded and only tested with PC Save games converted to Jailbroken PS5)
 
-Requirements
+Requirements:
+```
 Python 3.8+
 .NET 10.0 runtime (apt install dotnet10 on Ubuntu 24.04, or from dot.net)
-Garlic running on your PS5 (for PS5 push)
+Garlic running on your PS5 (for PS5 push)```
 
 
 
