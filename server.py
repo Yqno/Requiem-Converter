@@ -28,7 +28,7 @@ MJ_BIN = Path(os.environ.get("MJ_BIN", str(BASE_DIR / "MandarinJuice")))
 
 # ── defaults ──────────────────────────────────────────────────────────────────
 DEFAULT_STEAM_ID    = "76561197960265728"   # Steam32=0 (mod saves)
-DEFAULT_PS5_ID      = ""     # your PS5 account ID
+DEFAULT_PS5_ID      = ""     # your PS5 account ID in Decimal
 DEFAULT_TITLE_ID    = "PPSA31246"           # RE9 EU
 DEFAULT_REGION_HASH = "481759118"           # RE9 EU/AS PS5 (from confirmed guide)
 DEFAULT_APP_VERSION = "16785408"            # v1.0.2.0
