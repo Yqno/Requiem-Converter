@@ -9,7 +9,7 @@ Run:  python3 server.py
 Then: open http://localhost:8765
 """
 
-import json, os, re, shutil, subprocess, sys, tempfile, time, zipfile
+import json, os, platform, re, shutil, subprocess, sys, tempfile, time, zipfile
 import http.server, socketserver, urllib.parse, urllib.request
 from pathlib import Path
 
@@ -22,13 +22,28 @@ UPLOADS.mkdir(parents=True, exist_ok=True)
 CONV_BIN  = BASE_DIR / "convert_re9_ps5"
 SCE_TPL   = BASE_DIR / "sce_sys_template"
 PROFILES_DIR = BASE_DIR / "_profiles"
+BIN_DIR   = BASE_DIR / "bin"
 
-# MandarinJuice — binary placed next to server.py as "MandarinJuice"
-MJ_BIN = Path(os.environ.get("MJ_BIN", str(BASE_DIR / "MandarinJuice")))
+# MandarinJuice — auto-select binary by OS, override with MJ_BIN env var
+def _resolve_mj_bin() -> Path:
+    if "MJ_BIN" in os.environ:
+        return Path(os.environ["MJ_BIN"])
+    _sys = platform.system()
+    if _sys == "Windows":
+        return BIN_DIR / "mandarin-juice-cli.exe"
+    elif _sys == "Darwin":
+        return BIN_DIR / "mandarin-juice-cli-macos"
+    else:  # Linux / fallback
+        p = BIN_DIR / "mandarin-juice-cli-linux"
+        if not p.exists():
+            p = BASE_DIR / "MandarinJuice"  # legacy location
+        return p
+
+MJ_BIN = _resolve_mj_bin()
 
 # ── defaults ──────────────────────────────────────────────────────────────────
 DEFAULT_STEAM_ID    = "76561197960265728"   # Steam32=0 (mod saves)
-DEFAULT_PS5_ID      = ""     # your PS5 account ID in Decimal
+DEFAULT_PS5_ID      = ""                    # your PS5 account ID (enter in the UI)
 DEFAULT_TITLE_ID    = "PPSA31246"           # RE9 EU
 DEFAULT_REGION_HASH = "481759118"           # RE9 EU/AS PS5 (from confirmed guide)
 DEFAULT_APP_VERSION = "16785408"            # v1.0.2.0
@@ -1155,9 +1170,11 @@ class Server(socketserver.ThreadingMixIn, http.server.HTTPServer):
 
 
 def main():
-    print(f"RE9 Save Manager")
+    print(f"RE Engine Save Manager")
+    print(f"  Platform        : {platform.system()} {platform.machine()}")
     print(f"  convert_re9_ps5 : {'✓ ' + str(CONV_BIN) if CONV_BIN.exists() else '✗ NOT FOUND — place binary next to server.py'}")
-    print(f"  MandarinJuice   : {'✓ ' + str(MJ_BIN) if MJ_BIN.exists() else '✗ NOT FOUND — set MJ_BIN env var'}")
+    print(f"  MandarinJuice   : {'✓ ' + str(MJ_BIN) if MJ_BIN.exists() else '✗ NOT FOUND at ' + str(MJ_BIN)}")
+    print(f"  Profiles        : {len(list(PROFILES_DIR.glob('*.bin'))) if PROFILES_DIR.exists() else 0} game profiles")
     print(f"  sce_sys template: {'✓' if SCE_TPL.exists() else '✗ NOT FOUND'}")
     print(f"\nOpen http://localhost:{PORT}\n")
     with Server(("", PORT), Handler) as s:
