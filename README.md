@@ -57,34 +57,50 @@ PRAGMATA
 
  MandarinJuice can brute-force and re-sign the save, but full PS5 compatibility (region hash, app version fields) has not been verified. 
  Only Tested with RE Requiem which works Fine
-
+```
 Save Editor
 Garlic ZIP Import, drag in a Garlic backup ZIP, extracts all .bin saves automatically
 Hex Patch, patch any uint32 field in a save file (find → replace). Includes presets for RE9 region hash and app version values
 Python Brute Force, Steam ID brute-forcer implemented in Python as a fallback
 Garlic Package
+```
 
 Builds a Garlic-compatible folder structure from one or more .bin saves. Use this to import saves into Garlic Save Manager on the PS5.
-
+```
 PS5 Push
 
 Sends a save directly to the PS5 over HTTP via Garlic's save service API (/api/savedata). Requires Garlic running and the PS5 on the same network.
 
 Workflow: RE9 PC → PS5
+
 MandarinJuice → Brute Force your original PC save to find the Steam ID
+
 Convert tab → PC to PS5 (or use MandarinJuice Re-Sign with your PS5 Account ID)
+
 Hex Patch → apply region preset for your PS5 version (EU/AS or EU/US) and PS5 app version
+
 Garlic Package → build the package with Title ID PPSA31246 (EU) or your region's ID
+
 PS5 Push → send to PS5, or use Garlic Save Manager manually
+
 Known Values (RE9 EU)
+
 Field	Value
+
 _MainRegionHash PC	1874947740
+
 _MainRegionHash PS5 EU/AS	481759118
+
 _MainRegionHash PS5 EU/US	3208943443
+
 _ApplicationVersion PC	16781314
+
 _ApplicationVersion PS5	16785408
+
 Title ID EU	PPSA31246
-Based on
+```
+
+Based on:
 
 This tool ships with and is built around the following projects:
 
