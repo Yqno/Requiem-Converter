@@ -12,12 +12,14 @@ Garlic running on your PS5 (for PS5 push)
 Setup
 
 
-bash
+```
 git clone https://github.com/Yqno/Requiem-Converter/
 cd Requiem-Converter
 python3 server.py
+```
+Open ```http://localhost:8765``` in your browser.
 
-Open http://localhost:8765 in your browser.
+
 
 The MandarinJuice binary and convert_re9_ps5 binary must be in the same directory as server.py. Game profiles go in _profiles/.
 
